@@ -5,7 +5,7 @@ A playful, responsive web app that delivers encouragement and family-friendly hu
 🚀 Live Demo
 
 (Insert your live link here, e.g. GitHub Pages)
-➡️ https://yourusername.github.io/compliment-joke-generator
+➡️ https://mikebutts.github.io/compliments/
 
 🎴 About the Project
 
@@ -76,9 +76,9 @@ Deployment GitHub Pages (optional)
 
 ⚙️ How to Run Locally
 
-Clone the repository:
+Clone the repository: https://github.com/mikebutts/compliments.git
 
-git clone https://github.com/YOUR-USERNAME/compliment-joke-generator.git
+git clone
 
 Navigate inside:
 
