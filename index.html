@@ -5,17 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Compliment Generator</title>
 
-    <!-- Meta description for portfolio / SEO -->
-    <meta
-      name="description"
-      content="A simple, warm, and encouraging compliment generator built with vanilla HTML, CSS, and JavaScript."
-    />
-
-    <!-- Google Fonts: Nunito (compliment text) & Lato (UI text) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Nunito:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
@@ -23,34 +15,38 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="app-wrapper">
-      <main class="compliment-card" aria-label="Compliment Generator">
-        <header class="card-header">
-          <h1 class="app-title">Compliment Generator</h1>
-          <p class="app-subtitle">
-            Tap the button whenever you need a little boost ✨
-          </p>
-        </header>
+    <main class="app">
+      <div class="bg-orbit bg-orbit--one"></div>
+      <div class="bg-orbit bg-orbit--two"></div>
+
+      <section class="card" aria-label="Compliment generator">
+        <div class="card-header">
+          <span class="emoji-badge" aria-hidden="true">✨</span>
+          <div>
+            <h1 class="app-title">Compliment Generator</h1>
+            <p class="app-subtitle">
+              Tap the button for a boost of encouragement.
+            </p>
+          </div>
+        </div>
 
         <!-- Compliment display area -->
-        <section
-          class="compliment-display"
-          aria-live="polite"
-          aria-atomic="true"
-        >
+        <div class="compliment-box" aria-live="polite" aria-atomic="true">
           <p id="complimentText" class="compliment-text">
-            You are doing better than you think. 🌟
+            <!-- Filled by JavaScript -->
           </p>
-        </section>
+        </div>
 
         <!-- Action button -->
-        <button id="newComplimentBtn" class="btn-primary" type="button">
+        <button id="newComplimentBtn" class="btn" type="button">
           Get a New Compliment
         </button>
-      </main>
-    </div>
 
-    <!-- App logic -->
+        <p class="hint">Share one with a friend and double the happiness 💛</p>
+      </section>
+    </main>
+
+    <!-- Main script -->
     <script src="script.js" defer></script>
   </body>
 </html>
