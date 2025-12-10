@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compliment Generator</title>
+    <title>Compliment & Joke Generator</title>
 
     <!-- Google Fonts -->
     <link
@@ -15,32 +15,44 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="background-gradient"></div>
+    <main class="app">
+      <header class="app-header">
+        <h1 class="app-title">Compliment & Joke Generator</h1>
+        <p class="app-subtitle">Tap a button for encouragement or a laugh!</p>
+      </header>
 
-    <main class="app-wrapper">
-      <section class="compliment-card" aria-labelledby="compliment-heading">
-        <h1 id="compliment-heading" class="app-title">
-          Daily Compliment Boost
-        </h1>
-        <p class="app-subtitle">
-          Tap the button for a fresh dose of encouragement ✨
-        </p>
+      <section class="card-wrapper">
+        <!-- Playing Card -->
+        <article class="card" aria-live="polite">
+          <div class="card-corner card-corner-top-right">
+            <span class="corner-emoji">✨</span>
+          </div>
+          <div class="card-corner card-corner-bottom-left">
+            <span class="corner-emoji">✨</span>
+          </div>
 
-        <!-- Compliment display area -->
-        <div class="compliment-box" aria-live="polite">
-          <p id="complimentText" class="compliment-text">
-            You’re already doing better than you give yourself credit for.
-          </p>
+          <header class="card-header">
+            <span id="card-label" class="card-label">Compliment</span>
+          </header>
+
+          <div class="card-body">
+            <p id="display-text" class="display-text">
+              Click a button below to get started!
+            </p>
+            <p id="punchline" class="punchline"></p>
+          </div>
+        </article>
+
+        <div class="controls">
+          <button id="complimentBtn" class="btn primary-btn">
+            Get a Compliment
+          </button>
+
+          <button id="jokeBtn" class="btn secondary-btn">Get a Joke</button>
         </div>
-
-        <!-- Button -->
-        <button id="complimentButton" class="compliment-button">
-          Get a New Compliment
-        </button>
       </section>
     </main>
 
-    <!-- Script -->
     <script src="script.js"></script>
   </body>
 </html>

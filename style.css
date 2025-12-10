@@ -1,194 +1,224 @@
-/* 
-  Global Styles & Layout
-  ----------------------
-  - Fancy animated gradient background
-  - App centered with Flexbox
-  - Responsive layout for mobile & desktop
-*/
+:root {
+  --bg-light: #f8f9fa;
+  --text-primary: #212529;
+  --accent-primary: #ff6b6b;
+  --accent-hover: #ffd166;
+  --accent-muted: #ffecef;
+  --card-border: #dee2e6;
+  --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.15);
 
+  --card-width: min(340px, 92vw);
+  --card-height: calc(var(--card-width) * 1.5);
+}
+
+/* Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+body {
   margin: 0;
-  padding: 0;
-}
+  font-family: "Lato", sans-serif;
+  color: var(--text-primary);
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  color: #212529; /* Primary Text: Charcoal */
-  overflow: hidden;
-  position: relative;
-}
-
-/* Animated gradient background layer */
-.background-gradient {
-  position: fixed;
-  inset: 0;
   background: linear-gradient(
     -45deg,
-    #f8f9fa,
-    #ffe3e3,
-    #ffd166,
-    #f8f9fa,
-    #ff6b6b
+    #ff9a9e,
+    #fad0c4,
+    #fbc2eb,
+    #a1c4fd,
+    #c2ffd8,
+    #ffd3a5
   );
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  z-index: -1;
+  animation: gradientShift 18s ease infinite;
 }
 
-/* Slight blur overlay for softness */
-.background-gradient::after {
+/* Pattern overlay */
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  backdrop-filter: blur(4px);
-  opacity: 0.6;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle at 0% 0%,
+      rgba(255, 255, 255, 0.2),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(255, 255, 255, 0.2),
+      transparent 60%
+    );
+  opacity: 0.7;
 }
 
-/* Flexbox centering */
-.app-wrapper {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+.app {
+  text-align: center;
+  padding: 2rem 1rem;
 }
 
-/* Main card */
-.compliment-card {
-  background: rgba(248, 249, 250, 0.98); /* Base Background: #F8F9FA */
-  border-radius: 18px;
-  max-width: 520px;
-  width: 100%;
-  padding: 2.25rem 1.75rem;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Decorative soft glow in the corner */
-.compliment-card::before {
-  content: "";
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, #ffd16655, transparent 60%);
-  top: -80px;
-  right: -80px;
-  z-index: -1;
-}
-
-/* Heading & subtitle */
 .app-title {
+  font-size: 2rem;
   font-weight: 700;
-  font-size: 1.6rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .app-subtitle {
-  font-size: 0.95rem;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
-/* Compliment box
-   - Taller min-height to fit longer jokes & messages
-*/
-.compliment-box {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 1.6rem 1.3rem;
-  margin-bottom: 1.75rem;
-  min-height: 150px; /* <- ensures tall enough for long compliments/jokes */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.4rem;
+}
+
+/* Playing card */
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  background: var(--bg-light);
+  border-radius: 1.25rem;
+  border: 2px solid var(--card-border);
+  padding: 1.2rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e8e8e8;
+}
+
+/* Text area */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.display-text {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+/* Punchline hidden initially */
+.punchline {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-family: "Nunito", sans-serif;
+  margin-top: 1rem;
+  padding: 0.6rem;
+  border-radius: 0.8rem;
+  background: var(--accent-muted);
+  color: #5c2730;
+}
+
+.punchline.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Corners (INSIDE the card) */
+.card-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  z-index: 3;
 }
 
-/* Compliment text uses Nunito */
-.compliment-text {
-  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.5;
-  font-weight: 600;
+.card-corner-top-right {
+  top: 12px;
+  right: 12px;
 }
 
-/* Button styling */
-.compliment-button {
-  display: inline-block;
-  width: 100%;
-  padding: 0.9rem 1.2rem;
-  border: none;
+.card-corner-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+
+.corner-emoji {
+  transform: translate(0, 0);
+}
+
+/* Buttons */
+.controls {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.btn {
+  padding: 0.7rem 1.4rem;
   border-radius: 999px;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  border: none;
   cursor: pointer;
-  color: #ffffff;
-  background-color: #ff6b6b; /* Primary Accent: Living Coral */
-  box-shadow: 0 12px 25px rgba(255, 107, 107, 0.5);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease,
-    transform 0.1s ease;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
-.compliment-button:hover {
-  background-color: #ffd166; /* Secondary Accent: Sunny Yellow */
-  box-shadow: 0 12px 25px rgba(255, 209, 102, 0.6);
-  transform: translateY(-1px);
+.primary-btn {
+  background: var(--accent-primary);
 }
 
-.compliment-button:active {
-  transform: translateY(1px) scale(0.99);
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
+.primary-btn:hover {
+  background: var(--accent-hover);
+  color: #563300;
 }
 
-.compliment-button:focus-visible {
-  outline: 3px solid rgba(255, 107, 107, 0.7);
-  outline-offset: 3px;
+.secondary-btn {
+  background: #343a40;
 }
 
-/* Responsive tweaks */
-@media (min-width: 640px) {
-  .compliment-card {
-    padding: 2.5rem 2.25rem;
-  }
-
-  .app-title {
-    font-size: 1.8rem;
-  }
-
-  .compliment-text {
-    font-size: 1.2rem;
-  }
-
-  .compliment-box {
-    min-height: 170px;
-  }
+.secondary-btn:hover {
+  background: #495057;
 }
 
-/* Keyframes for animated gradient background */
+/* Animated background */
 @keyframes gradientShift {
   0% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   50% {
     background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
 }
