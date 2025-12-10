@@ -1,238 +1,194 @@
-/* === Global Styles === */
-
-:root {
-  --bg-main: #f8f9fa; /* Light Gray */
-  --text-main: #212529; /* Charcoal */
-  --accent-primary: #ff6b6b; /* Living Coral */
-  --accent-hover: #ffd166; /* Sunny Yellow */
-  --card-bg: #ffffff;
-  --compliment-bg: #fff2f2;
-  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.08);
-  --radius-lg: 24px;
-}
+/* 
+  Global Styles & Layout
+  ----------------------
+  - Fancy animated gradient background
+  - App centered with Flexbox
+  - Responsive layout for mobile & desktop
+*/
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html,
-body {
   margin: 0;
   padding: 0;
 }
 
+html,
 body {
-  min-height: 100vh;
-  font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  height: 100%;
 }
 
-/* Center app content */
+body {
+  font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #212529; /* Primary Text: Charcoal */
+  overflow: hidden;
+  position: relative;
+}
 
-.app {
-  min-height: 100vh;
+/* Animated gradient background layer */
+.background-gradient {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    #f8f9fa,
+    #ffe3e3,
+    #ffd166,
+    #f8f9fa,
+    #ff6b6b
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -1;
+}
+
+/* Slight blur overlay for softness */
+.background-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  opacity: 0.6;
+}
+
+/* Flexbox centering */
+.app-wrapper {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+}
+
+/* Main card */
+.compliment-card {
+  background: rgba(248, 249, 250, 0.98); /* Base Background: #F8F9FA */
+  border-radius: 18px;
+  max-width: 520px;
+  width: 100%;
+  padding: 2.25rem 1.75rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   position: relative;
   overflow: hidden;
 }
 
-/* Decorative gradient orbs */
-
-.bg-orbit {
+/* Decorative soft glow in the corner */
+.compliment-card::before {
+  content: "";
   position: absolute;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  filter: blur(55px);
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
+  background: radial-gradient(circle at center, #ffd16655, transparent 60%);
+  top: -80px;
+  right: -80px;
+  z-index: -1;
 }
 
-.bg-orbit--one {
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle at 30% 20%, #ffd166, #ff6b6b);
-  top: -140px;
-  right: -120px;
-}
-
-.bg-orbit--two {
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle at 70% 80%, #ff6b6b, #ffd6ff);
-  bottom: -170px;
-  left: -140px;
-}
-
-/* === Card Layout === */
-
-.card {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  width: 100%;
-  background: linear-gradient(145deg, #ffffff, #fffaf5);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-  padding: 1.75rem 1.75rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-/* Header */
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-}
-
+/* Heading & subtitle */
 .app-title {
-  margin: 0;
-  font-size: 1.4rem;
   font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
 }
 
 .app-subtitle {
-  margin: 0.1rem 0 0;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
 }
 
-/* Emoji badge */
-
-.emoji-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b6b, #ffd166);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
-}
-
-/* Compliment box */
-
+/* Compliment box
+   - Taller min-height to fit longer jokes & messages
+*/
 .compliment-box {
-  background: var(--compliment-bg);
-  border-radius: 18px;
-  padding: 1.5rem 1.25rem;
-  border: 1px solid rgba(255, 107, 107, 0.18);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.6rem 1.3rem;
+  margin-bottom: 1.75rem;
+  min-height: 150px; /* <- ensures tall enough for long compliments/jokes */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  /* Fixed visual size so the box doesn't jump */
-  min-height: 180px;
-  max-height: 220px;
-  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
 }
 
-/* Custom scrollbar for overflowing compliments */
-.compliment-box::-webkit-scrollbar {
-  width: 6px;
-}
-.compliment-box::-webkit-scrollbar-track {
-  background: transparent;
-}
-.compliment-box::-webkit-scrollbar-thumb {
-  background: rgba(255, 107, 107, 0.55);
-  border-radius: 999px;
-}
-
+/* Compliment text uses Nunito */
 .compliment-text {
-  margin: 0;
   font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.5;
+  font-weight: 600;
 }
 
-/* Animation for new compliment */
-
-.compliment-text.animate-in {
-  animation: fadeSlideUp 0.45s ease-out;
-}
-
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Button */
-
-.btn {
-  margin-top: 0.25rem;
+/* Button styling */
+.compliment-button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.9rem 1.2rem;
   border: none;
   border-radius: 999px;
-  padding: 0.85rem 1.8rem;
   font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   cursor: pointer;
-  align-self: center;
-  background: var(--accent-primary);
   color: #ffffff;
-  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.45);
-  transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+  background-color: #ff6b6b; /* Primary Accent: Living Coral */
+  box-shadow: 0 12px 25px rgba(255, 107, 107, 0.5);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.1s ease;
 }
 
-.btn:hover,
-.btn:focus-visible {
-  background: var(--accent-hover);
+.compliment-button:hover {
+  background-color: #ffd166; /* Secondary Accent: Sunny Yellow */
+  box-shadow: 0 12px 25px rgba(255, 209, 102, 0.6);
   transform: translateY(-1px);
-  box-shadow: 0 12px 32px rgba(255, 209, 102, 0.55);
 }
 
-.btn:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+.compliment-button:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
 }
 
-.btn:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.9);
+.compliment-button:focus-visible {
+  outline: 3px solid rgba(255, 107, 107, 0.7);
   outline-offset: 3px;
 }
 
-/* Hint text */
-
-.hint {
-  margin: 0;
-  margin-top: 0.35rem;
-  text-align: center;
-  font-size: 0.85rem;
-  opacity: 0.75;
-}
-
-/* === Responsive Tweaks === */
-
-@media (min-width: 768px) {
-  .card {
-    padding: 2.25rem 2.5rem 2rem;
+/* Responsive tweaks */
+@media (min-width: 640px) {
+  .compliment-card {
+    padding: 2.5rem 2.25rem;
   }
 
   .app-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
 
   .compliment-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  .compliment-box {
+    min-height: 170px;
+  }
+}
+
+/* Keyframes for animated gradient background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

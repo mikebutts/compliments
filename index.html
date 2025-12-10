@@ -7,46 +7,40 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Nunito:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Nunito:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Main stylesheet -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="app">
-      <div class="bg-orbit bg-orbit--one"></div>
-      <div class="bg-orbit bg-orbit--two"></div>
+    <div class="background-gradient"></div>
 
-      <section class="card" aria-label="Compliment generator">
-        <div class="card-header">
-          <span class="emoji-badge" aria-hidden="true">✨</span>
-          <div>
-            <h1 class="app-title">Compliment Generator</h1>
-            <p class="app-subtitle">
-              Tap the button for a boost of encouragement.
-            </p>
-          </div>
-        </div>
+    <main class="app-wrapper">
+      <section class="compliment-card" aria-labelledby="compliment-heading">
+        <h1 id="compliment-heading" class="app-title">
+          Daily Compliment Boost
+        </h1>
+        <p class="app-subtitle">
+          Tap the button for a fresh dose of encouragement ✨
+        </p>
 
         <!-- Compliment display area -->
-        <div class="compliment-box" aria-live="polite" aria-atomic="true">
+        <div class="compliment-box" aria-live="polite">
           <p id="complimentText" class="compliment-text">
-            <!-- Filled by JavaScript -->
+            You’re already doing better than you give yourself credit for.
           </p>
         </div>
 
-        <!-- Action button -->
-        <button id="newComplimentBtn" class="btn" type="button">
+        <!-- Button -->
+        <button id="complimentButton" class="compliment-button">
           Get a New Compliment
         </button>
-
-        <p class="hint">Share one with a friend and double the happiness 💛</p>
       </section>
     </main>
 
-    <!-- Main script -->
-    <script src="script.js" defer></script>
+    <!-- Script -->
+    <script src="script.js"></script>
   </body>
 </html>
