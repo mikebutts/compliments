@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compliment Generator</title>
+
+    <!-- Meta description for portfolio / SEO -->
+    <meta
+      name="description"
+      content="A simple, warm, and encouraging compliment generator built with vanilla HTML, CSS, and JavaScript."
+    />
+
+    <!-- Google Fonts: Nunito (compliment text) & Lato (UI text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <main class="compliment-card" aria-label="Compliment Generator">
+        <header class="card-header">
+          <h1 class="app-title">Compliment Generator</h1>
+          <p class="app-subtitle">
+            Tap the button whenever you need a little boost ✨
+          </p>
+        </header>
+
+        <!-- Compliment display area -->
+        <section
+          class="compliment-display"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <p id="complimentText" class="compliment-text">
+            You are doing better than you think. 🌟
+          </p>
+        </section>
+
+        <!-- Action button -->
+        <button id="newComplimentBtn" class="btn-primary" type="button">
+          Get a New Compliment
+        </button>
+      </main>
+    </div>
+
+    <!-- App logic -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
